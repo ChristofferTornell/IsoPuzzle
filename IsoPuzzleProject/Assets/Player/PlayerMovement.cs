@@ -10,15 +10,17 @@ public class PlayerMovement : MonoBehaviour
     [Space]
     [Header("Insertables")]
     public GameObject bulbPrefab;
-    private Rigidbody2D myRigidbody;
+    private Rigidbody2D rigidBody;
     private Vector3 inputChange;
     private Animator animator;
     private Vector3 mousePositionRelativeToPlayer = Vector3.zero;
+    [HideInInspector] public bool hasBulb;
 
 
     private void Start()
     {
-        myRigidbody = GetComponent<Rigidbody2D>();
+        hasBulb = true;
+        rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
@@ -51,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        myRigidbody.MovePosition(transform.position + inputChange * moveSpeed * Time.deltaTime);
+        rigidBody.MovePosition(transform.position + inputChange * moveSpeed * Time.deltaTime);
     }
     private void CheckInputs()
     {
@@ -66,7 +68,11 @@ public class PlayerMovement : MonoBehaviour
     }
     private void AttemptThrowBulb()
     {
+        if (!hasBulb) { return; }
+        //Sets direction and force of bulb
         GameObject bulbObj = Instantiate(bulbPrefab, transform.position, Quaternion.identity);
-        bulbObj.GetComponent<Rigidbody2D>().AddForce(mousePositionRelativeToPlayer.normalized * bulbThrowPower);
+        //Vector3 directionToThrow = mousePositionRelativeToPlayer.Normalize(); //TODO MAKE THIS WORK
+        bulbObj.GetComponent<Rigidbody2D>().AddForce(mousePositionRelativeToPlayer * bulbThrowPower);
+        hasBulb = false;
     }
 }
