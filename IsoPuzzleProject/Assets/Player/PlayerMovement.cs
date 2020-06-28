@@ -32,9 +32,9 @@ public class PlayerMovement : MonoBehaviour
     private void AnimateAndMovePlayer()
     {
         //Checking mouse position relative to player
-        Vector3 mouseScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y);
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
-        mousePositionRelativeToPlayer = mouseWorldPosition - transform.position;
+        Vector2 mouseScreenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+        mousePositionRelativeToPlayer = mouseWorldPosition - (Vector2)transform.position;
 
         //Changing face direction of player character
         animator.SetFloat("mouseX", mousePositionRelativeToPlayer.x);
@@ -71,7 +71,9 @@ public class PlayerMovement : MonoBehaviour
         if (!hasBulb) { return; }
         //Sets direction and force of bulb
         GameObject bulbObj = Instantiate(bulbPrefab, transform.position, Quaternion.identity);
-        Vector3 directionToThrow = mousePositionRelativeToPlayer.normalized; //TODO MAKE THIS WORK
+        Debug.Log(mousePositionRelativeToPlayer.normalized);
+        Vector2 directionToThrow = mousePositionRelativeToPlayer.normalized;
+        Debug.Log(directionToThrow.magnitude);
         bulbObj.GetComponent<Rigidbody2D>().AddForce(directionToThrow * bulbThrowPower);
         hasBulb = false;
     }
