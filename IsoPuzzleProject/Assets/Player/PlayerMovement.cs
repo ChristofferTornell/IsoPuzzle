@@ -71,8 +71,8 @@ public class PlayerMovement : MonoBehaviour
         if (!hasBulb) { return; }
         //Sets direction and force of bulb
         GameObject bulbObj = Instantiate(bulbPrefab, transform.position, Quaternion.identity);
-        //Vector3 directionToThrow = mousePositionRelativeToPlayer.Normalize(); //TODO MAKE THIS WORK
-        bulbObj.GetComponent<Rigidbody2D>().AddForce(mousePositionRelativeToPlayer * bulbThrowPower);
+        Vector3 directionToThrow = mousePositionRelativeToPlayer.normalized; //TODO MAKE THIS WORK
+        bulbObj.GetComponent<Rigidbody2D>().AddForce(directionToThrow * bulbThrowPower);
         hasBulb = false;
     }
 }
