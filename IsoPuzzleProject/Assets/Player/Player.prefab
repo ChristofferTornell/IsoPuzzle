@@ -47,11 +47,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4203b2e1663235a42836e9417945a78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  bulbThrowPower: 200
-  bulbPrefab: {fileID: 8844694665659559785, guid: 60f3cb05967a5b1429a9fe870127a837,
-    type: 3}
+  rigidBody: {fileID: 0}
+  animator: {fileID: 0}
+  mousePositionRelativeToPlayer: {x: 0, y: 0, z: 0}
   hasBulb: 0
+  normalState:
+    moveSpeed: 10
+  chargeThrowState:
+    bulbThrowPower: 350
+    bulbPrefab: {fileID: 8844694665659559785, guid: 60f3cb05967a5b1429a9fe870127a837,
+      type: 3}
 --- !u!50 &4659231820368984626
 Rigidbody2D:
   serializedVersion: 4
