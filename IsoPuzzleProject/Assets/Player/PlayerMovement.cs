@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public Rigidbody2D rigidBody;
     [HideInInspector] public Animator animator;
     [HideInInspector] public Vector3 mousePositionRelativeToPlayer = Vector3.zero;
-    [HideInInspector] public bool hasBulb;
+    public bool hasBulb;
 
     public PlayerStateNormal normalState = new PlayerStateNormal();
     public PlayerStateChargeThrow chargeThrowState = new PlayerStateChargeThrow();
@@ -44,6 +44,10 @@ public class PlayerMovement : MonoBehaviour
         hasBulb = false;
     }
 
+    public void FixedUpdate()
+    {
+        currentState.FixedUpdate();
+    }
     public void Update()
     {
         currentState.Update();

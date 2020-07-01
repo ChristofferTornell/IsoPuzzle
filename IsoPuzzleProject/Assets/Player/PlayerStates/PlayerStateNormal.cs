@@ -22,6 +22,10 @@ public class PlayerStateNormal : PlayerStateParent
     public override void Update()
     {
         CheckInputs();
+
+    }
+    public override void FixedUpdate()
+    {
         AnimateAndMovePlayer();
     }
 
@@ -30,8 +34,6 @@ public class PlayerStateNormal : PlayerStateParent
         inputChange = Vector3.zero;
         inputChange.x = Input.GetAxis("Horizontal");
         inputChange.y = Input.GetAxis("Vertical");
-        player.animator.SetFloat("moveX", inputChange.x);
-        player.animator.SetFloat("moveY", inputChange.y);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -43,6 +45,8 @@ public class PlayerStateNormal : PlayerStateParent
         if (inputChange != Vector3.zero)
         {
             MovePlayer();
+            player.animator.SetFloat("moveX", inputChange.x);
+            player.animator.SetFloat("moveY", inputChange.y);
             player.animator.SetBool("isMoving", true);
         }
         else

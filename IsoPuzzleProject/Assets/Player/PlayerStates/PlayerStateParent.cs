@@ -18,7 +18,10 @@ public class PlayerStateParent
     public virtual void Exit()
     {
     }
+    public virtual void FixedUpdate()
+    {
 
+    }
     public virtual void Update()
     {
 
