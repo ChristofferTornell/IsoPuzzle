@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public Animator animator;
     [HideInInspector] public Vector3 mousePositionRelativeToPlayer = Vector3.zero;
     public bool hasBulb;
-
     public PlayerStateNormal normalState = new PlayerStateNormal();
     public PlayerStateChargeThrow chargeThrowState = new PlayerStateChargeThrow();
     private PlayerStateParent currentState = null;
@@ -36,9 +35,9 @@ public class PlayerMovement : MonoBehaviour
         currentState.Enter();
     }
 
-    public void ThrowBulb(GameObject _bulbPrefab, float _bulbThrowPower)
+    public void ThrowBulb(GameObject _bulbPrefab, float _bulbThrowPower, Vector3 spawnLocation)
     {
-        GameObject bulbObj = Instantiate(_bulbPrefab, transform.position, Quaternion.identity);
+        GameObject bulbObj = Instantiate(_bulbPrefab, spawnLocation, Quaternion.identity);
         Vector2 directionToThrow = mousePositionRelativeToPlayer.normalized;
         bulbObj.GetComponent<Rigidbody2D>().AddForce(directionToThrow * _bulbThrowPower);
         hasBulb = false;

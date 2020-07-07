@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 723356457432323740}
   - component: {fileID: -4529014426275114453}
   - component: {fileID: 7822909852703889237}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bulb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBeforeAbleToPickup: 1
+  colliderTrigger: {fileID: -4529014426275114453}
 --- !u!212 &1635422328066419782
 SpriteRenderer:
   m_ObjectHideFlags: 0

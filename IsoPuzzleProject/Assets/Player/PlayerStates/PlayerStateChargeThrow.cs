@@ -20,6 +20,7 @@ public class PlayerStateChargeThrow : PlayerStateParent
     public GameObject bulbPrefab;
     public GameObject powerBarCanvas;
     public Slider powerBarSlider;
+    public Transform firePoint;
 
     public override void Enter()
     {
@@ -54,7 +55,7 @@ public class PlayerStateChargeThrow : PlayerStateParent
         }
         if (stateCounter >= timeBeforeExitState)
         {
-            player.ThrowBulb(bulbPrefab, bulbThrowPower + bulbThrowPowerPerSecond*statePowerCounter);
+            player.ThrowBulb(bulbPrefab, bulbThrowPower + bulbThrowPowerPerSecond*statePowerCounter, firePoint.position);
             player.Transit(player.normalState);
         }
     }
@@ -63,7 +64,7 @@ public class PlayerStateChargeThrow : PlayerStateParent
     {
         if (Input.GetMouseButtonUp(0))
         {
-            player.ThrowBulb(bulbPrefab, bulbThrowPower + bulbThrowPowerPerSecond*statePowerCounter);
+            player.ThrowBulb(bulbPrefab, bulbThrowPower + bulbThrowPowerPerSecond*statePowerCounter, firePoint.position);
             player.Transit(player.normalState);
         }
         if (Input.GetMouseButtonDown(1))

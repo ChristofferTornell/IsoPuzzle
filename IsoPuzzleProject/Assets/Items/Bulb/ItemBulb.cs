@@ -6,11 +6,13 @@ public class ItemBulb : MonoBehaviour
 {
     public float timeBeforeAbleToPickup;
     private bool ableToPickup;
+    public CircleCollider2D colliderTrigger;
 
 
     private void Start()
     {
         Invoke("SetAbleToPickup", timeBeforeAbleToPickup);
+        InvokeRepeating("CheckPickup", 0, 0.1f);
     }
 
     private void SetAbleToPickup()
@@ -22,6 +24,20 @@ public class ItemBulb : MonoBehaviour
         if (ableToPickup && collision.GetComponent<PlayerMovement>() != null)
         {
             collision.GetComponent<PlayerMovement>().hasBulb = true;
+            Destroy(gameObject);
+        }
+    }
+
+    private void CheckPickup()
+    {
+        if (!ableToPickup)
+        {
+            return;
+        }
+        PlayerMovement player = FindObjectOfType<PlayerMovement>();
+        if (Vector3.Distance(player.transform.position, this.transform.position) <= colliderTrigger.radius * transform.localScale.x)
+        {
+            player.hasBulb = true;
             Destroy(gameObject);
         }
     }
