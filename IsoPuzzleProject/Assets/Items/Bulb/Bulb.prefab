@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a699d6d6c9894514ba4817bfd88f3b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeAbleToPickup: 1
+  timeBeforeAbleToPickup: 0.2
   colliderTrigger: {fileID: -4529014426275114453}
 --- !u!212 &1635422328066419782
 SpriteRenderer:

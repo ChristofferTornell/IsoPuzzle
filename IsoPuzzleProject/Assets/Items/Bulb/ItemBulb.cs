@@ -12,7 +12,6 @@ public class ItemBulb : MonoBehaviour
     private void Start()
     {
         Invoke("SetAbleToPickup", timeBeforeAbleToPickup);
-        InvokeRepeating("CheckPickup", 0, 0.1f);
     }
 
     private void SetAbleToPickup()
@@ -28,7 +27,7 @@ public class ItemBulb : MonoBehaviour
         }
     }
 
-    private void CheckPickup()
+    private void Update()
     {
         if (!ableToPickup)
         {
