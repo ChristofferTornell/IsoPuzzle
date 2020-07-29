@@ -13,10 +13,12 @@ public class EnemyStateFlee : EnemyStateParent
 
     public override void Enter()
     {
+        //Initiates by trying to find the furthest distance from the bulb
         UpdateTargetPosition();
     }
     public override void Update()
     {
+        //Tries to find the furthest distance from the bulb every frame, unless the bulb is far away, thus going to stand state. Distance from bulb is how far it will run. 
         enemy.transform.Translate(target * moveSpeedFlee * Time.deltaTime, Space.World);
         if (enemy.fleeBulb != null && Vector3.Distance(enemy.transform.position, enemy.fleeBulb.position) >= distanceFromBulb)
         {

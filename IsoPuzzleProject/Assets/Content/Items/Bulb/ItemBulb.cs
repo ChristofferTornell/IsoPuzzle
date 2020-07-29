@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
+
 
 public class ItemBulb : MonoBehaviour
 {
@@ -8,10 +10,14 @@ public class ItemBulb : MonoBehaviour
     private bool ableToPickup;
     public CircleCollider2D colliderTrigger;
 
+    public Light2D myLight;
 
     private void Start()
     {
-        Invoke("SetAbleToPickup", timeBeforeAbleToPickup);
+        Invoke("SetAbleToPickup", timeBeforeAbleToPickup); //FIX STRING
+
+        //Makes the light radius equal to the radius that makes enemies scared of the light, giving the illusion that it's the light that is scaring the enemies.
+        myLight.pointLightOuterRadius = colliderTrigger.radius;
     }
 
     private void SetAbleToPickup()

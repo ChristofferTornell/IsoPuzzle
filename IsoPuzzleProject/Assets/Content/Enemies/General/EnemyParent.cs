@@ -26,7 +26,6 @@ public class EnemyParent : MonoBehaviour
     {
         currentState.Exit();
         currentState = targetState;
-        //Debug.Log("to state: " + targetState);
         currentState.Enter();
     }
 

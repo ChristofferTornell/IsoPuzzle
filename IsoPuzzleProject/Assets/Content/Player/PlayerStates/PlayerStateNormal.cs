@@ -31,6 +31,7 @@ public class PlayerStateNormal : PlayerStateParent
 
     private void CheckInputs()
     {
+        //Handles player input
         inputChange = Vector3.zero;
         inputChange.x = Input.GetAxis("Horizontal");
         inputChange.y = Input.GetAxis("Vertical");
@@ -42,6 +43,7 @@ public class PlayerStateNormal : PlayerStateParent
     }
     private void AnimateAndMovePlayer()
     {
+        //Animates and moves player depending on input calculations from other method
         if (inputChange != Vector3.zero)
         {
             MovePlayer();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,10 +9,23 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public Rigidbody2D rigidBody;
     [HideInInspector] public Animator animator;
     [HideInInspector] public Vector3 mousePositionRelativeToPlayer = Vector3.zero;
-    public bool hasBulb;
     public PlayerStateNormal normalState = new PlayerStateNormal();
     public PlayerStateChargeThrow chargeThrowState = new PlayerStateChargeThrow();
     private PlayerStateParent currentState = null;
+
+    public Light2D headLight;
+    private bool HasBulb;
+    public bool hasBulb
+    {
+        get { return HasBulb;}
+        set
+        {
+            //Everytime hasBulb is set, it either turns off headLight or activates it.
+            HasBulb = value;
+            if (!HasBulb) { headLight.gameObject.SetActive(false); }
+            else { headLight.gameObject.SetActive(true); }
+        }
+    }
 
     private void Start()
     {

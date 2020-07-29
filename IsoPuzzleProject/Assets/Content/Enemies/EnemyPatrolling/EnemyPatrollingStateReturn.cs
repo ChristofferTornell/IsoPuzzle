@@ -7,6 +7,7 @@ public class EnemyPatrollingStateReturn : EnemyStateReturn
 {
     public override void Enter()
     {
+        //Initiates state by finding the closest waypoint and to try to reach it as the target waypoint
         enemy.GetComponent<EnemyPatrolling>().waypointIndex = 0;
         float closestDistance = Mathf.Infinity;
         foreach(Transform waypoint in enemy.GetComponent<EnemyPatrolling>().waypoints)
@@ -24,6 +25,7 @@ public class EnemyPatrollingStateReturn : EnemyStateReturn
     }
     public override void OnFoundLocation()
     {
+        //If reached target waypoint, go back to patroll state.
         enemy.Transit(enemy.GetComponent<EnemyPatrolling>().patrollingState);
     }
 }
