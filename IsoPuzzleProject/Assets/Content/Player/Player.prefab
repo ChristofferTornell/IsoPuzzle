@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.5
+  m_FalloffIntensity: 0.85
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.95
   m_LightVolumeOpacity: 0
@@ -58,8 +58,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 1
-  m_PointLightOuterRadius: 3
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 2
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
@@ -226,7 +226,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   mousePositionRelativeToPlayer: {x: 0, y: 0, z: 0}
   normalState:
-    moveSpeed: 3
+    moveSpeed: 1.35
   chargeThrowState:
     bulbThrowPower: 300
     timeBeforePowerIncreaseBegins: 0.5
@@ -237,7 +237,10 @@ MonoBehaviour:
     powerBarCanvas: {fileID: 1403734899765111972}
     powerBarSlider: {fileID: 8001235386650496935}
     firePoint: {fileID: 8418976988558451441}
+  panicManager: {fileID: 11400000, guid: f5a5025b61e406148bfd71163f1dad3a, type: 2}
   headLight: {fileID: 9091940612529985958}
+  stopPanicDelay: 2
+  panicRegenerationPerSecond: 0.25
 --- !u!50 &4659231820368984626
 Rigidbody2D:
   serializedVersion: 4

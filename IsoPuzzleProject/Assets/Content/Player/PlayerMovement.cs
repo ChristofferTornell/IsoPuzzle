@@ -12,9 +12,16 @@ public class PlayerMovement : MonoBehaviour
     public PlayerStateNormal normalState = new PlayerStateNormal();
     public PlayerStateChargeThrow chargeThrowState = new PlayerStateChargeThrow();
     private PlayerStateParent currentState = null;
-
+    [Header("General Insertables")]
+    public PanicManager panicManager;
     public Light2D headLight;
     private bool HasBulb;
+    private bool recentlyPanicked;
+    private float recentlyPanickedCounter = 0;
+
+    [Header("Panic Stats")]
+    [SerializeField] private float stopPanicDelay = 1f;
+    [SerializeField] private float panicRegenerationPerSecond = 1f;
     public bool hasBulb
     {
         get { return HasBulb;}
@@ -63,6 +70,31 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Update()
     {
+        //if (Input.GetKeyDown(KeyCode.A)) { panicManager.currentPanic -= 0.5f; }
         currentState.Update();
+        PanicHandler();
+    }
+
+    public void ApplyPanic()
+    {
+        recentlyPanicked = true;
+        recentlyPanickedCounter = 0;
+    }
+
+    private void PanicHandler()
+    {
+        if (recentlyPanicked)
+        {
+            recentlyPanickedCounter += Time.deltaTime;
+        }
+        if (recentlyPanickedCounter > stopPanicDelay)
+        {
+            recentlyPanicked = false;
+            recentlyPanickedCounter = 0;
+        }
+        if (!recentlyPanicked && panicManager.currentPanic < panicManager.basePanic)
+        {
+            panicManager.currentPanic += panicRegenerationPerSecond * Time.deltaTime;
+        }
     }
 }
