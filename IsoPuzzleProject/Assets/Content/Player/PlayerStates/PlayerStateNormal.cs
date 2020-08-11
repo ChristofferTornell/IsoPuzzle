@@ -10,6 +10,7 @@ public class PlayerStateNormal : PlayerStateParent
 
     [Header("Stats")]
     public float moveSpeed;
+    private float glowCounter = 0f;
 
     public override void Enter()
     {
@@ -50,10 +51,14 @@ public class PlayerStateNormal : PlayerStateParent
             player.animator.SetFloat("moveX", inputChange.x);
             player.animator.SetFloat("moveY", inputChange.y);
             player.animator.SetBool("isMoving", true);
+            player.TurnOnLight();
+            glowCounter = 0;
         }
         else
         {
-            player.animator.SetBool("isMoving", false);
+            player.animator.SetBool("isMoving", false); //TODO could be optimized to not call the animator if its already false
+            if (glowCounter < player.glowDuration) { glowCounter += Time.deltaTime; }
+            else { player.TurnOffLight(); }
         }
     }
 

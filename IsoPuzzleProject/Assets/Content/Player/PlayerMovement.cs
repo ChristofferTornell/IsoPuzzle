@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,10 +13,14 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStateParent currentState = null;
     [Header("General Insertables")]
     public PanicManager panicManager;
-    public Light2D headLight;
+    public LightSourceInteractable headLight;
     private bool HasBulb;
     private bool recentlyPanicked;
     private float recentlyPanickedCounter = 0;
+
+    [Header("Light Stats")]
+    public float lightFadeSpeed = 1f;
+    public float glowDuration = 2f;
 
     [Header("Panic Stats")]
     [SerializeField] private float stopPanicDelay = 1f;
@@ -29,8 +32,8 @@ public class PlayerMovement : MonoBehaviour
         {
             //Everytime hasBulb is set, it either turns off headLight or activates it.
             HasBulb = value;
-            if (!HasBulb) { headLight.gameObject.SetActive(false); }
-            else { headLight.gameObject.SetActive(true); }
+            if (!HasBulb) { TurnOffLight(); }
+            else { TurnOnLight(); }
         }
     }
 
@@ -96,5 +99,14 @@ public class PlayerMovement : MonoBehaviour
         {
             panicManager.currentPanic += panicRegenerationPerSecond * Time.deltaTime;
         }
+    }
+
+    public void TurnOffLight()
+    {
+        headLight.TurnOff(lightFadeSpeed);
+    }
+    public void TurnOnLight()
+    {
+        headLight.TurnOn(lightFadeSpeed);
     }
 }

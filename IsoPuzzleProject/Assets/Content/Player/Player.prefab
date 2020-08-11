@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3143781749051351615}
   - component: {fileID: 9091940612529985958}
+  - component: {fileID: 1100273480048806203}
   m_Layer: 0
   m_Name: Point Light 2D
   m_TagString: Untagged
@@ -72,6 +73,19 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &1100273480048806203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525608927124639445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ae1efa9222158448480de067a25917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light2D: {fileID: 9091940612529985958}
 --- !u!1 &1403734899765111972
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +253,9 @@ MonoBehaviour:
     powerBarSlider: {fileID: 8001235386650496935}
     firePoint: {fileID: 8418976988558451441}
   panicManager: {fileID: 11400000, guid: f5a5025b61e406148bfd71163f1dad3a, type: 2}
-  headLight: {fileID: 9091940612529985958}
+  headLight: {fileID: 1100273480048806203}
+  lightFadeSpeed: 3
+  glowDuration: 1
   stopPanicDelay: 2
   panicRegenerationPerSecond: 0.25
 --- !u!50 &4659231820368984626
