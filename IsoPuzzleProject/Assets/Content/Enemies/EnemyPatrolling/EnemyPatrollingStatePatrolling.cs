@@ -31,7 +31,7 @@ public class EnemyPatrollingStatePatrolling : EnemyPatrollingStateParent
         }
 
         //Checks for bulb
-        IsBulbTooClose();
+        AnActiveBulbIsBulbTooClose();
     }
     void NextWaypoint()
     {

@@ -27,10 +27,10 @@ public class EnemyStateParent
 
     }
 
-    public virtual bool IsBulbTooClose()
+    public virtual bool AnActiveBulbIsBulbTooClose()
     {
         ItemBulb bulb = enemy.FindItemBulb();
-        if (bulb != null && Vector3.Distance(bulb.transform.position, enemy.transform.position) <= enemy.rangeToCheckBulbInner)
+        if (bulb != null && bulb.myLight.lightActive && Vector3.Distance(bulb.transform.position, enemy.transform.position) <= enemy.rangeToCheckBulbInner)
         {
             enemy.fleeBulb = bulb.transform;
             enemy.Transit(enemy.fleeState);
@@ -38,10 +38,10 @@ public class EnemyStateParent
         }
         return false;
     }
-    public virtual bool IsBulbNearby()
+    public virtual bool AnActiveBulbIsNearby()
     {
         ItemBulb bulb = enemy.FindItemBulb();
-        if (bulb != null && Vector3.Distance(bulb.transform.position, enemy.transform.position) <= enemy.rangeToCheckBulbOuter)
+        if (bulb != null && bulb.myLight.lightActive && Vector3.Distance(bulb.transform.position, enemy.transform.position) <= enemy.rangeToCheckBulbOuter)
         {
             return true;
         }

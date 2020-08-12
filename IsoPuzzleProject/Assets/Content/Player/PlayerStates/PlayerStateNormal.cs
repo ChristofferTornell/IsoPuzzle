@@ -23,7 +23,6 @@ public class PlayerStateNormal : PlayerStateParent
     public override void Update()
     {
         CheckInputs();
-
     }
     public override void FixedUpdate()
     {

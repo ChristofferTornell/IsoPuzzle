@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fleeState:
-    moveSpeedFlee: 2
+    moveSpeedFlee: 4
     waypointCheck: 0.2
     distanceFromBulb: 2
   returnState:

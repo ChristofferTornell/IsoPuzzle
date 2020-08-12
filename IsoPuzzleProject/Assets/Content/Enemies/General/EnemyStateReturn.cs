@@ -21,7 +21,7 @@ public class EnemyStateReturn : EnemyStateParent
         {
             OnFoundLocation();
         }
-        if (IsBulbTooClose())
+        if (AnActiveBulbIsBulbTooClose())
         {
             UpdateTargetPosition();
         }

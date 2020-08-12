@@ -10,7 +10,7 @@ public class PanicManager : ScriptableObject
     [HideInInspector] public float basePanic = 1;
     private float CurrentPanic = 1;
     public UnityAction<float> onPanicChange = delegate { };
-
+    public UnityAction<float> onPanicDecrease = delegate { };
     private void OnEnable()
     {
         currentPanic = basePanic;
@@ -25,7 +25,12 @@ public class PanicManager : ScriptableObject
         {
             if (CurrentPanic != value)
             {
+                if (CurrentPanic > value)
+                {
+                    onPanicDecrease(CurrentPanic - value);
+                }
                 CurrentPanic = value;
+                
                 onPanicChange(CurrentPanic/basePanic);
                 if (CurrentPanic > basePanic)
                 {

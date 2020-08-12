@@ -15,7 +15,6 @@ public class EnemyPanicMaker : MonoBehaviour
         {
             float distanceFromPlayer = Vector2.Distance(transform.position, collision.transform.position);
             collision.GetComponent<PlayerMovement>().ApplyPanic();
-            Debug.Log(distanceFromPlayer);
             panicManager.currentPanic -= ((panicDecreasePerSecond + Mathf.Pow(panicPerDistanceMultiplier, (Mathf.Pow(distanceFromPlayer, panicPerDistanceExponential)))) * Time.deltaTime);
         }
     }

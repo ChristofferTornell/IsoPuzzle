@@ -20,22 +20,20 @@ public class EnemyStateFlee : EnemyStateParent
     {
         //Tries to find the furthest distance from the bulb every frame, unless the bulb is far away, thus going to stand state. Distance from bulb is how far it will run. 
         enemy.transform.Translate(target * moveSpeedFlee * Time.deltaTime, Space.World);
-        if (enemy.fleeBulb != null && Vector3.Distance(enemy.transform.position, enemy.fleeBulb.position) >= distanceFromBulb)
+        if (AnActiveBulbIsNearby())
         {
             enemy.Transit(enemy.standState);
-            return;
         }
-        if (IsBulbTooClose())
+        else if (AnActiveBulbIsBulbTooClose())
         {
             UpdateTargetPosition();
         }
-        if (enemy.fleeBulb == null) 
-        {
+        else 
+        { 
             if (enemy.GetComponent<EnemyPatrolling>() != null) { enemy.Transit(enemy.GetComponent<EnemyPatrolling>().returnStatePatroll); }
             else { enemy.Transit(enemy.returnState); }
         }
     }
-
     public void UpdateTargetPosition()
     {
         if (enemy.fleeBulb == null)

@@ -86,6 +86,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light2D: {fileID: 9091940612529985958}
+  lightActive: 1
+  spriteMask: {fileID: 9213159292384031382}
 --- !u!1 &1403734899765111972
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +260,7 @@ MonoBehaviour:
   glowDuration: 1
   stopPanicDelay: 2
   panicRegenerationPerSecond: 0.25
+  panicDecreaseInDarknessPerSecond: 0.1
 --- !u!50 &4659231820368984626
 Rigidbody2D:
   serializedVersion: 4

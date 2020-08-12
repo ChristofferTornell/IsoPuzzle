@@ -166,6 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light2D: {fileID: 7320705555325268978}
+  lightActive: 1
+  spriteMask: {fileID: 7378366384067697871}
 --- !u!1 &8844694665659559785
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +219,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBeforeAbleToPickup: 0.2
   colliderTrigger: {fileID: -4529014426275114453}
-  myLight: {fileID: 7320705555325268978}
+  glowDuration: 10
+  fadeSpeed: 3
+  myLight: {fileID: 205044804154927080}
 --- !u!212 &1635422328066419782
 SpriteRenderer:
   m_ObjectHideFlags: 0

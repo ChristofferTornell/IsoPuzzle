@@ -8,8 +8,9 @@ public class LightSourceInteractable : MonoBehaviour
     public Light2D light2D;
     private bool turningOn = false;
     private bool turningOff = false;
-    private bool lightActive = true;
+    [HideInInspector] public bool lightActive = true;
     private float LightIntensity = 1f;
+    public SpriteMask spriteMask;
     public float lightIntensity
     {
         get { return LightIntensity; }
@@ -20,10 +21,13 @@ public class LightSourceInteractable : MonoBehaviour
             if (light2D.intensity <= 0 && lightActive)
             {
                 lightActive = false;
+                spriteMask.gameObject.SetActive(false);
             }
             else if (light2D.intensity > 0 && !lightActive)
             {
                 lightActive = true;
+                spriteMask.gameObject.SetActive(true);
+
             }
         }
     }
@@ -44,7 +48,7 @@ public class LightSourceInteractable : MonoBehaviour
         while (turningOff && !turningOn && lightIntensity > 0)
         {
             lightIntensity -= fadeSpeed/100;
-            break;
+            yield return null;
         }
         if (lightIntensity < 0) { lightIntensity = 0; }
         turningOff = false;
@@ -57,7 +61,7 @@ public class LightSourceInteractable : MonoBehaviour
         while (!turningOff && turningOn && lightIntensity <= 1)
         {
             lightIntensity += fadeSpeed/100;
-            break;
+            yield return null;
         }
         turningOn = false;
         yield return null;

@@ -20,7 +20,7 @@ public class EnemyStateStand : EnemyStateParent
             stateCounter = 0;
         }
         */
-        if (!IsBulbTooClose() && !IsBulbNearby())
+        if (!AnActiveBulbIsBulbTooClose() && !AnActiveBulbIsNearby())
         {
             if (enemy.GetComponent<EnemyPatrolling>() != null) { enemy.Transit(enemy.GetComponent<EnemyPatrolling>().returnStatePatroll); }
             else { enemy.Transit(enemy.returnState); }

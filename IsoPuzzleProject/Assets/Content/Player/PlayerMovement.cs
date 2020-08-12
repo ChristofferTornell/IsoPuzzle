@@ -15,16 +15,17 @@ public class PlayerMovement : MonoBehaviour
     public PanicManager panicManager;
     public LightSourceInteractable headLight;
     private bool HasBulb;
-    private bool recentlyPanicked;
-    private float recentlyPanickedCounter = 0;
 
     [Header("Light Stats")]
     public float lightFadeSpeed = 1f;
     public float glowDuration = 2f;
 
     [Header("Panic Stats")]
+    private bool recentlyPanicked;
+    private float recentlyPanickedCounter = 0;
     [SerializeField] private float stopPanicDelay = 1f;
     [SerializeField] private float panicRegenerationPerSecond = 1f;
+    [SerializeField] private float panicDecreaseInDarknessPerSecond = 1f;
     public bool hasBulb
     {
         get { return HasBulb;}
@@ -84,7 +85,27 @@ public class PlayerMovement : MonoBehaviour
         recentlyPanickedCounter = 0;
     }
 
+    private void OnPanicDecrease(float amount)
+    {
+        ApplyPanic();
+    }
+
     private void PanicHandler()
+    {
+        RecentlyPanickedHandler();
+        DarknessPanicHandler();
+    }
+
+    private void DarknessPanicHandler()
+    {
+        if (!headLight.lightActive)
+        {
+            panicManager.currentPanic -= panicDecreaseInDarknessPerSecond * Time.deltaTime;
+        }
+    }
+
+
+    private void RecentlyPanickedHandler()
     {
         if (recentlyPanicked)
         {
@@ -108,5 +129,14 @@ public class PlayerMovement : MonoBehaviour
     public void TurnOnLight()
     {
         headLight.TurnOn(lightFadeSpeed);
+    }
+
+    public void OnEnable()
+    {
+        panicManager.onPanicDecrease += OnPanicDecrease;
+    }
+    public void OnDisable()
+    {
+        panicManager.onPanicDecrease -= OnPanicDecrease;
     }
 }
