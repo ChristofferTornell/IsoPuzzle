@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class DoorSwitch : MonoBehaviour
 {
-    [SerializeField] private Door myDoor;
+    [SerializeField] private Door myDoor = null;
     private int EnemiesOnSwitch = 0;
+
+    public enum SwitchType
+    {
+        StayDown,
+        PressSensitive
+    }
+
+    public SwitchType myType = SwitchType.StayDown;
 
     public int enemiesOnSwitch
     {
@@ -16,7 +24,14 @@ public class DoorSwitch : MonoBehaviour
             EnemiesOnSwitch = value; 
             if (value <= 0)
             {
-                myDoor.Close();
+                switch (myType)
+                {
+                    case SwitchType.StayDown:
+                        break;
+                    case SwitchType.PressSensitive:
+                        myDoor.Close();
+                        break;
+                }
             }
             else
             {

@@ -17,8 +17,8 @@ public class EnemyPatrollingStateReturn : EnemyStateReturn
                 enemy.GetComponent<EnemyPatrolling>().waypointIndex++;
 
                 closestDistance = Vector3.Distance(waypoint.position, enemy.transform.position);
-                target = enemy.transform.position - waypoint.position;
-                target = target.normalized * -1;
+                targetDirection = enemy.transform.position - waypoint.position;
+                targetDirection = targetDirection.normalized * -1;
                 targetLocation = waypoint.position;
             }
         }

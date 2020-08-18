@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemyPanicMaker : MonoBehaviour
 {
     public PanicManager panicManager;
-    [SerializeField] private float panicDecreasePerSecond;
-    [SerializeField] private float panicPerDistanceMultiplier;
-    [SerializeField] private float panicPerDistanceExponential;
+    [SerializeField] private float panicDecreasePerSecond = 0f;
+    [SerializeField] private float panicPerDistanceMultiplier = 0f;
+    [SerializeField] private float panicPerDistanceExponential = 0f;
 
     private void OnTriggerStay2D(Collider2D collision)
     {

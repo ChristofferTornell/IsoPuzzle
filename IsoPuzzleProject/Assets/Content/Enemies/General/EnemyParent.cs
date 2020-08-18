@@ -35,6 +35,7 @@ public class EnemyParent : MonoBehaviour
     }
     public void Update()
     {
+
         currentState.Update();
     }
 

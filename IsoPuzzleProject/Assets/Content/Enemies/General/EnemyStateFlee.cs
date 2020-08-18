@@ -29,7 +29,7 @@ public class EnemyStateFlee : EnemyStateParent
             UpdateTargetPosition();
         }
         else 
-        { 
+        {
             if (enemy.GetComponent<EnemyPatrolling>() != null) { enemy.Transit(enemy.GetComponent<EnemyPatrolling>().returnStatePatroll); }
             else { enemy.Transit(enemy.returnState); }
         }

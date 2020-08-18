@@ -5,14 +5,14 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [HideInInspector] public bool isOpen = false;
-    public void Open()
+    public virtual void Open()
     {
         if (isOpen) { return; }
         isOpen = true;
         GetComponent<SpriteRenderer>().color = Color.black;
     }
 
-    public void Close()
+    public virtual void Close()
     {
         if (!isOpen) { return; }
         isOpen = false;

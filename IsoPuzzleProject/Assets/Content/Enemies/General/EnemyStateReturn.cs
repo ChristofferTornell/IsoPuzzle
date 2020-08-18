@@ -5,22 +5,29 @@ using UnityEngine;
 public class EnemyStateReturn : EnemyStateParent
 {
     [SerializeField] private float moveSpeedReturn_ = 0.5f;
-    [HideInInspector] public Vector3 target;
+    [HideInInspector] public Vector3 targetDirection;
     public float waypointCheck = 0.2f;
     [HideInInspector] public Vector3 targetLocation;
 
     public override void Enter()
     {
-        target = enemy.transform.position - enemy.spawnLocation;
+        //Target is direction
+        targetDirection = enemy.spawnLocation - enemy.transform.position;
+
+        //Targetlocation is the location to check if reached
         targetLocation = enemy.spawnLocation;
     }
     public override void Update()
     {
-        GoToLocation(target);
+        GoInDirection(targetDirection);
+
+        //If found target location
         if (Vector3.Distance(enemy.transform.position, targetLocation) <= waypointCheck)
         {
             OnFoundLocation();
         }
+
+        //If bulb is too close
         if (AnActiveBulbIsBulbTooClose())
         {
             UpdateTargetPosition();
@@ -31,9 +38,9 @@ public class EnemyStateReturn : EnemyStateParent
     {
 
     }
-    public void GoToLocation(Vector3 _targetLocation)
+    public void GoInDirection(Vector3 _targetDirection)
     {
-        enemy.transform.Translate(_targetLocation.normalized * moveSpeedReturn_ * Time.deltaTime, Space.World);
+        enemy.transform.Translate(_targetDirection.normalized * moveSpeedReturn_ * Time.deltaTime, Space.World);
     }
     public virtual void OnFoundLocation()
     {
