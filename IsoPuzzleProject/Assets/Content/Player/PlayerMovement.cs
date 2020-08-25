@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void TurnOnLight()
     {
-        headLight.TurnOn(lightFadeSpeed);
+        if (hasBulb) { headLight.TurnOn(lightFadeSpeed); }
     }
 
     public void OnEnable()
